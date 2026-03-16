@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>D Lingo Translator</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+margin-top:100px;
+}
+
+input{
+padding:10px;
+width:250px;
+}
+
+button{
+padding:10px;
+margin:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>D Lingo Translator</h1>
+
+<input id="text" placeholder="Type text">
+
+<br>
+
+<button onclick="translate()">Translate</button>
+
+<h2 id="result"></h2>
+
+<script>
+
+async function translate(){
+
+let text=document.getElementById("text").value;
+
+let res=await fetch(
+"https://api.mymemory.translated.net/get?q="+text+"&langpair=en|te"
+);
+
+let data=await res.json();
+
+document.getElementById("result").innerText=
+data.responseData.translatedText;
+
+}
+
+</script>
+
+</body>
+</html>
